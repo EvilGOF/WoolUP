@@ -19,6 +19,12 @@ function saludoImporte(importeFinal) {
   alert(`El importe final es de : $` + importeFinal + `\nDisfrute su compra!`);
 }
 
+function menuArticulos() {
+  alert(
+    `\n ${articulo1.nombreArticulo} : $${articulo1.precioArticulo} \n ${articulo2.nombreArticulo} : $${articulo2.precioArticulo} \n ${articulo3.nombreArticulo} : $${articulo3.precioArticulo} \n ${articulo4.nombreArticulo} : $${articulo4.precioArticulo} \n ${articulo5.nombreArticulo} : $${articulo5.precioArticulo} \n ${articulo6.nombreArticulo} : $${articulo6.precioArticulo}`
+  );
+}
+
 const articulo1 = new articulo("Alfombra", 500);
 
 const articulo2 = new articulo("Bufanda", 400);
@@ -37,9 +43,7 @@ let localidad = prompt("Ingrese su localidad:");
 
 const name = new user(nombre, localidad);
 
-let menu = alert(
-  `\n ${articulo1.nombreArticulo} : $${articulo1.precioArticulo} \n ${articulo2.nombreArticulo} : $${articulo2.precioArticulo} \n ${articulo3.nombreArticulo} : $${articulo3.precioArticulo} \n ${articulo4.nombreArticulo} : $${articulo4.precioArticulo} \n ${articulo5.nombreArticulo} : $${articulo5.precioArticulo} \n ${articulo6.nombreArticulo} : $${articulo6.precioArticulo}`
-);
+let menu = menuArticulos();
 
 let entrada = prompt(
   `Bienvenido ${nombre}! \nIngrese el importe del artículo. Ingrese ESC si desea salir del programa.`
