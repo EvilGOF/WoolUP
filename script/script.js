@@ -64,6 +64,8 @@ while (entrada != "ESC") {
 
   const saludo = saludoImporte(importeFinal);
 
+  menu = menuArticulos();
+
   entrada = prompt(
     `Ingrese otro importe. O ingrese ESC si desea salir del programa.`
   );
