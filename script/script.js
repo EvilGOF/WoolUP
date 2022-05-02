@@ -32,7 +32,7 @@ let localidad = prompt("Ingrese su localidad:");
 const name = new user(nombre, localidad);
 
 let entrada = prompt(
-  `Bienvenido ${nombre}! \nIngrese el ID del artículo deseado.  
+  `Bienvenido ${nombre}! \nIngrese el número de ID del artículo deseado.  
   \nId 1 Alfombra: $500 
   \nId 2 Bufanda: $400 
   \nId 3 Guantes: $200
@@ -52,35 +52,33 @@ while (entrada != "ESC") {
   }
 
   entrada = parseInt(entrada);
+  if (entrada <= 6 && entrada > 0) {
+    const elementoCarrito = listaArticulos.find(
+      (i) => i.idArticulo === entrada
+    );
 
-  const elementoCarrito = listaArticulos.find((i) => i.idArticulo === entrada);
+    carrito.push(elementoCarrito.precioArticulo);
 
-  carrito.push(elementoCarrito.precioArticulo);
+    let alertCarrito = "";
 
-  let alertCarrito = "";
+    for (const [key, value] of Object.entries({
+      Articulo: elementoCarrito.nombreArticulo,
 
-  for (const [key, value] of Object.entries({
-    Articulo: elementoCarrito.nombreArticulo,
-    Precio: "$" + elementoCarrito.precioArticulo,
-  })) {
-    alertCarrito += `${key}: ${value}\n`;
-  }
-  alert(`Felicidades, agregaste a tu carrito:\n${alertCarrito}`);
+      Precio: "$" + elementoCarrito.precioArticulo,
+    })) {
+      alertCarrito += `${key}: ${value}\n`;
+    }
 
-  console.log(carrito);
+    alert(`Felicidades, agregaste a tu carrito:\n${alertCarrito}`);
 
-  const total = parseInt(carrito.reduce((j, i) => j + i, 0));
+    const total = parseInt(carrito.reduce((j, i) => j + i, 0));
 
-  console.log(total);
-  console.log(envio);
-  console.log(iva(total));
+    let importeFinal = calculoImporteFinal(total, envio, iva(total));
 
-  let importeFinal = calculoImporteFinal(total, envio, iva(total));
+    const saludo = saludoImporte(importeFinal);
 
-  const saludo = saludoImporte(importeFinal);
-
-  entrada = prompt(
-    `Ingrese otro Id para agregar un articulo.
+    entrada = prompt(
+      `Ingrese otro Id para agregar un articulo.
     \nId 1 Alfombra: $500 
     \nId 2 Bufanda: $400 
     \nId 3 Guantes: $200
@@ -88,5 +86,19 @@ while (entrada != "ESC") {
     \nId 5 Manta: $1000 
     \nId 6 Canasta: $600 
     \nO ingrese ESC si desea salir del programa.`
-  );
+    );
+  } else if (entrada > 6) {
+    alert("Error. Ingrese un ID valido.");
+
+    entrada = prompt(
+      `Ingrese otro Id para agregar un articulo.
+    \nId 1 Alfombra: $500 
+    \nId 2 Bufanda: $400 
+    \nId 3 Guantes: $200
+    \nId 4 Gorro: $500 
+    \nId 5 Manta: $1000 
+    \nId 6 Canasta: $600 
+    \nO ingrese ESC si desea salir del programa.`
+    );
+  }
 }
