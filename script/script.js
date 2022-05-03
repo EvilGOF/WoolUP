@@ -52,7 +52,7 @@ while (entrada != "ESC") {
   }
 
   entrada = parseInt(entrada);
-  if (entrada <= 6 && entrada > 0) {
+  if (entrada <= 6 && entrada >= 1) {
     const elementoCarrito = listaArticulos.find(
       (i) => i.idArticulo === entrada
     );
@@ -87,7 +87,7 @@ while (entrada != "ESC") {
     \nId 6 Canasta: $600 
     \nO ingrese ESC si desea salir del programa.`
     );
-  } else if (entrada > 6) {
+  } else if (entrada > 6 || entrada == 0) {
     alert("Error. Ingrese un ID valido.");
 
     entrada = prompt(
