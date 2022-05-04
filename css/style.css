@@ -360,6 +360,7 @@
   transform: scale(1.2) translate(-5%, 0);
   transition: transform 1200ms ease-in;
   will-change: transform;
+  z-index: 4;
 }
 
 .gallery-card__caption {
@@ -372,7 +373,7 @@
   margin: 0;
   border-radius: 4px 0 0 0;
   background-color: rgba(255, 255, 255, 0.87);
-  z-index: 2;
+  z-index: 5;
 }
 
 /*# sourceMappingURL=style.css.map */
