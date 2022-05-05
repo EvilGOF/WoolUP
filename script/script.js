@@ -100,5 +100,18 @@ while (entrada != "ESC") {
     \nId 6 Canasta: $600 
     \nO ingrese ESC si desea salir del programa.`
     );
+  } else {
+    alert("Error. Dato ingresado erroneo.");
+
+    entrada = prompt(
+      `Ingrese otro Id para agregar un articulo.
+    \nId 1 Alfombra: $500 
+    \nId 2 Bufanda: $400 
+    \nId 3 Guantes: $200
+    \nId 4 Gorro: $500 
+    \nId 5 Manta: $1000 
+    \nId 6 Canasta: $600 
+    \nO ingrese ESC si desea salir del programa.`
+    );
   }
 }
