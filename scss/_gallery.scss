@@ -1,6 +1,5 @@
 .gallery_container {
   min-height: 100vh;
-
   font-family: "Baloo 2", sans-serif;
   position: absolute;
 }
@@ -8,7 +7,7 @@
   .gallery_container {
     position: absolute;
     left: 52%;
-    margin-top: 5rem;
+    margin-top: 8rem;
     transform: translate(-50%, -50%);
   }
 }

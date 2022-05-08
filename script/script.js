@@ -1,18 +1,39 @@
-function user(nombre, localidad) {
-  this.nombre = nombre;
+//Declaración Clases y Funciones
 
-  this.localidad = localidad;
+class User {
+  constructor(nombre, localidad) {
+    this.nombre = nombre;
+
+    this.localidad = localidad;
+  }
+
+  UserData(nombre, localidad, envio) {
+    return `${nombre}, ya que vivís en ${localidad} el envio es de $${envio}. Se sumara el IVA a cada producto elegido.`;
+  }
 }
 
-function calculoImporteFinal(articulo, envio, iva) {
+function CalculoImporteFinal(articulo, envio, iva) {
   return articulo + envio + iva;
 }
 
-const iva = (x) => x * 0.21;
+function Menu() {
+  return `Ingrese un Id para agregar un articulo.
+  \nId 1 Alfombra: $500 
+  \nId 2 Bufanda: $400 
+  \nId 3 Guantes: $200
+  \nId 4 Gorro: $500 
+  \nId 5 Manta: $1000 
+  \nId 6 Canasta: $600 
+  \nO ingrese ESC si desea salir del programa.`;
+}
 
-function saludoImporte(importeFinal) {
+const Iva = (x) => x * 0.21;
+
+function SaludoImporte(importeFinal) {
   alert(`El importe final es de : $` + importeFinal + `\nDisfrute su compra!`);
 }
+
+//script
 
 const listaArticulos = [
   { idArticulo: 1, nombreArticulo: "Alfombra", precioArticulo: 500 },
@@ -29,29 +50,29 @@ let nombre = prompt("Ingrese su nombre:");
 
 let localidad = prompt("Ingrese su localidad:");
 
-const name = new user(nombre, localidad);
+let newUser = new User(nombre, localidad);
 
-let entrada = prompt(
-  `Bienvenido ${nombre}! \nIngrese el número de ID del artículo deseado.  
-  \nId 1 Alfombra: $500 
-  \nId 2 Bufanda: $400 
-  \nId 3 Guantes: $200
-  \nId 4 Gorro: $500 
-  \nId 5 Manta: $1000 
-  \nId 6 Canasta: $600 
-  \nIngrese ESC si desea salir del programa.`
-);
+let welcomeUser = document.getElementById("title-gallery");
+
+welcomeUser.innerText = `Hola!\nBienvenido/a ${nombre}`;
+
+let menu = Menu();
+
+let entrada = prompt(`Bienvenido ${nombre}!\n${menu}`);
 
 while (entrada != "ESC") {
-  let envio;
-
   if (localidad === "CABA") {
     envio = 200;
   } else {
     envio = 300;
   }
 
+  const data = newUser.UserData(nombre, localidad, envio);
+
+  alert(data);
+
   entrada = parseInt(entrada);
+
   if (entrada <= 6 && entrada >= 1) {
     const elementoCarrito = listaArticulos.find(
       (i) => i.idArticulo === entrada
@@ -73,45 +94,18 @@ while (entrada != "ESC") {
 
     const total = parseInt(carrito.reduce((j, i) => j + i, 0));
 
-    let importeFinal = calculoImporteFinal(total, envio, iva(total));
+    let importeFinal = CalculoImporteFinal(total, envio, Iva(total));
 
-    const saludo = saludoImporte(importeFinal);
+    SaludoImporte(importeFinal);
 
-    entrada = prompt(
-      `Ingrese otro Id para agregar un articulo.
-    \nId 1 Alfombra: $500 
-    \nId 2 Bufanda: $400 
-    \nId 3 Guantes: $200
-    \nId 4 Gorro: $500 
-    \nId 5 Manta: $1000 
-    \nId 6 Canasta: $600 
-    \nO ingrese ESC si desea salir del programa.`
-    );
+    entrada = prompt(menu);
   } else if (entrada > 6 || entrada == 0) {
     alert("Error. Ingrese un ID valido.");
 
-    entrada = prompt(
-      `Ingrese otro Id para agregar un articulo.
-    \nId 1 Alfombra: $500 
-    \nId 2 Bufanda: $400 
-    \nId 3 Guantes: $200
-    \nId 4 Gorro: $500 
-    \nId 5 Manta: $1000 
-    \nId 6 Canasta: $600 
-    \nO ingrese ESC si desea salir del programa.`
-    );
+    entrada = prompt(menu);
   } else {
     alert("Error. Dato ingresado erroneo.");
 
-    entrada = prompt(
-      `Ingrese otro Id para agregar un articulo.
-    \nId 1 Alfombra: $500 
-    \nId 2 Bufanda: $400 
-    \nId 3 Guantes: $200
-    \nId 4 Gorro: $500 
-    \nId 5 Manta: $1000 
-    \nId 6 Canasta: $600 
-    \nO ingrese ESC si desea salir del programa.`
-    );
+    entrada = prompt(menu);
   }
 }
