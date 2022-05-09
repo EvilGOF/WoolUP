@@ -93,3 +93,25 @@
   background-color: rgba(#fff, 0.87);
   z-index: 5;
 }
+#faltante {
+  position: relative;
+  right: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 2rem;
+  width: 300px;
+  background-color: #000;
+  color: #fff;
+}
+.faltante-title {
+  position: relative;
+  right: 1rem;
+}
+.faltante-item {
+  position: relative;
+  right: 1rem;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+}

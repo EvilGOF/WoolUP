@@ -46,6 +46,28 @@ const listaArticulos = [
 
 const carrito = [];
 
+let articulosFaltantes = ["Alfombra de baño", "Medias", "Set de mesa de luz"];
+
+let faltante = document.getElementById("faltante");
+
+let faltanteTitle = document.createElement("h4");
+
+faltanteTitle.innerText = `Articulos Faltantes`;
+
+faltanteTitle.className = `faltante-title`;
+
+faltante.append(faltanteTitle);
+
+for (const articuloFaltante of articulosFaltantes) {
+  let li = document.createElement("li");
+
+  li.innerHTML = articuloFaltante;
+
+  li.className = `faltante-item`;
+
+  faltante.append(li);
+}
+
 let nombre = prompt("Ingrese su nombre:");
 
 let localidad = prompt("Ingrese su localidad:");
