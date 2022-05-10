@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("El documento se ha cargado");
+});
+
 //Declaración Clases y Funciones
 
 class User {
@@ -7,16 +11,16 @@ class User {
     this.localidad = localidad;
   }
 
-  UserData(nombre, localidad, envio) {
+  userData(nombre, localidad, envio) {
     return `${nombre}, ya que vivís en ${localidad} el envio es de $${envio}. Se sumara el IVA a cada producto elegido.`;
   }
 }
 
-function CalculoImporteFinal(articulo, envio, iva) {
+function calculoImporteFinal(articulo, envio, iva) {
   return articulo + envio + iva;
 }
 
-function Menu() {
+function menu() {
   return `Ingrese un Id para agregar un articulo.
   \nId 1 Alfombra: $500 
   \nId 2 Bufanda: $400 
@@ -27,9 +31,9 @@ function Menu() {
   \nO ingrese ESC si desea salir del programa.`;
 }
 
-const Iva = (x) => x * 0.21;
+const iva = (x) => x * 0.21;
 
-function SaludoImporte(importeFinal) {
+function saludoImporte(importeFinal) {
   alert(`El importe final es de : $` + importeFinal + `\nDisfrute su compra!`);
 }
 
@@ -76,11 +80,11 @@ let newUser = new User(nombre, localidad);
 
 let welcomeUser = document.getElementById("title-gallery");
 
-welcomeUser.innerText = `Hola!\nBienvenido/a ${nombre}`;
+welcomeUser.innerText = `Hola!\nBienvenido/a ${newUser.nombre}`;
 
-let menu = Menu();
+let menuArticulos = menu();
 
-let entrada = prompt(`Bienvenido ${nombre}!\n${menu}`);
+let entrada = prompt(`Bienvenido ${nombre}!\n${menuArticulos}`);
 
 while (entrada != "ESC") {
   if (localidad === "CABA") {
@@ -89,7 +93,7 @@ while (entrada != "ESC") {
     envio = 300;
   }
 
-  const data = newUser.UserData(nombre, localidad, envio);
+  const data = newUser.userData(nombre, localidad, envio);
 
   alert(data);
 
@@ -116,18 +120,18 @@ while (entrada != "ESC") {
 
     const total = parseInt(carrito.reduce((j, i) => j + i, 0));
 
-    let importeFinal = CalculoImporteFinal(total, envio, Iva(total));
+    let importeFinal = calculoImporteFinal(total, envio, iva(total));
 
-    SaludoImporte(importeFinal);
+    saludoImporte(importeFinal);
 
-    entrada = prompt(menu);
+    entrada = prompt(menuArticulos);
   } else if (entrada > 6 || entrada == 0) {
     alert("Error. Ingrese un ID valido.");
 
-    entrada = prompt(menu);
+    entrada = prompt(menuArticulos);
   } else {
     alert("Error. Dato ingresado erroneo.");
 
-    entrada = prompt(menu);
+    entrada = prompt(menuArticulos);
   }
 }
