@@ -41,53 +41,149 @@
     </div>
     <div class="content">
       <div class="gallery_container container">
-        <form id="formulario">
-          <input type="text" name="name" id="name" placeholder="Juan" />
-          <input
-            type="text"
-            name="email"
-            id="email"
-            placeholder="juanperez@gmail.com"
-          />
-          <input
-            type="text"
-            name="localidad"
-            id="localidad"
-            placeholder="CABA"
-          />
-          <button type="submit">Registrar</button>
-        </form>
-        <br />
         <h2 id="title-gallery"></h2>
-        <ul class="gallery row">
-          <li class="gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img class="gallery-card__img" alt="" src="../img/alfombra.jpg" />
-            <p class="gallery-card__caption">Alfombra</p>
+        <section class="shopping-cart">
+          <div class="container">
+            <h1 class="text-center">CARRITO</h1>
+            <hr />
+            <div class="row">
+              <div class="col-6">
+                <div class="shopping-cart-header">
+                  <h6>Producto</h6>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="shopping-cart-header">
+                  <h6 class="text-truncate">Precio</h6>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="shopping-cart-header">
+                  <h6>Cantidad</h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="shopping-cart-items shoppingCartItemsContainer"></div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="shopping-cart-total d-flex align-items-center">
+                  <p class="mb-0">Total</p>
+                  <p class="ml-4 mb-0 shoppingCartTotal">$0</p>
+                  <div
+                    class="toast ml-auto bg-info"
+                    role="alert"
+                    aria-live="assertive"
+                    aria-atomic="true"
+                    data-delay="2000"
+                  >
+                    <div class="toast-header">
+                      <span>✅</span>
+                      <strong class="mr-auto ml-1 text-secondary"
+                        >Elemento en el carrito</strong
+                      >
+                      <button
+                        type="button"
+                        class="ml-2 mb-1 close"
+                        data-dismiss="toast"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-success ml-auto comprarButton"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#comprarModal"
+                  >
+                    Comprar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <ul class="gallery row p-2 items">
+          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
+            <img
+              class="gallery-card__img item-image"
+              alt=""
+              src="../img/alfombra.jpg"
+            />
+            <p class="gallery-card__caption item-title">Alfombra</p>
+            <p class="gallery-card__caption item-price">$500</p>
+            <button id="btnAlfombra" class="buyBoton item-button addToCart">
+              Buy
+            </button>
           </li>
-          <li class="gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img class="gallery-card__img" alt="" src="../img/bufanda.jpg" />
-            <p class="gallery-card__caption">Bufanda</p>
+          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
+            <img
+              class="gallery-card__img item-image"
+              alt=""
+              src="../img/bufanda.jpg"
+            />
+            <p class="gallery-card__caption item-title">Bufanda</p>
+            <p class="gallery-card__caption item-price">$400</p>
+            <button id="btnBufanda" class="buyBoton item-button addToCart">
+              Buy
+            </button>
           </li>
-          <li class="gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img class="gallery-card__img" alt="" src="../img/guantes.jpg" />
-            <p class="gallery-card__caption">Guantas</p>
+          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
+            <img
+              class="gallery-card__img item-image"
+              alt=""
+              src="../img/guantes.jpg"
+            />
+            <p class="gallery-card__caption item-title">Guantes</p>
+            <p class="gallery-card__caption item-price">$200</p>
+            <button id="btnBGuantes" class="buyBoton item-button addToCart">
+              Buy
+            </button>
           </li>
-          <li class="gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img class="gallery-card__img" alt="" src="../img/gorro.jpg" />
-            <p class="gallery-card__caption">Gorro</p>
+          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
+            <img
+              class="gallery-card__img item-image"
+              alt=""
+              src="../img/gorro.jpg"
+            />
+            <p class="gallery-card__caption item-title">Gorro</p>
+            <p class="gallery-card__caption item-price">$500</p>
+            <button id="btnGorro" class="buyBoton item-button addToCart">
+              Buy
+            </button>
           </li>
-          <li class="gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img class="gallery-card__img" alt="" src="../img/manta.jpg" />
-            <p class="gallery-card__caption">Manta</p>
+          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
+            <img
+              class="gallery-card__img item-image"
+              alt=""
+              src="../img/manta.jpg"
+            />
+            <p class="gallery-card__caption item-title">Manta</p>
+            <p class="gallery-card__caption item-price">$1000</p>
+            <button id="btnManta" class="buyBoton item-button addToCart">
+              Buy
+            </button>
           </li>
-          <li class="gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img class="gallery-card__img" alt="" src="../img/canasta.jpg" />
-            <p class="gallery-card__caption">Canasta</p>
+          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
+            <img
+              class="gallery-card__img item-image"
+              alt=""
+              src="../img/canasta.jpg"
+            />
+            <p class="gallery-card__caption item-title">Canasta</p>
+            <p class="gallery-card__caption item-price">$600</p>
+            <button id="btnCanasta" class="buyBoton item-button addToCart">
+              Buy
+            </button>
           </li>
         </ul>
         <ul id="faltante"></ul>
+        <br />
       </div>
     </div>
-    <script src="../script/script.js"></script>
+    <script src="../script/tienda.js"></script>
   </body>
 </html>

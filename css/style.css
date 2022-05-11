@@ -289,9 +289,10 @@
 }
 
 .gallery_container {
-  min-height: 100vh;
   font-family: "Baloo 2", sans-serif;
   position: absolute;
+  top: 8rem;
+  width: 100%;
 }
 
 @media (min-width: 998px) {
@@ -354,7 +355,7 @@
 
 .gallery-card__img {
   object-fit: fill;
-  width: 300px;
+  width: 370px;
   height: 40vh;
   display: block;
   transform: scale(1.2) translate(-5%, 0);
@@ -364,7 +365,7 @@
 }
 
 .gallery-card__caption {
-  transform: translateY(100%);
+  transform: translateY(120%);
   transition: 400ms transform 800ms ease-in;
   will-change: transform;
   text-align: right;
@@ -374,6 +375,14 @@
   border-radius: 4px 0 0 0;
   background-color: rgba(255, 255, 255, 0.87);
   z-index: 5;
+  position: relative;
+  bottom: 1.5rem;
+  right: 4.5rem;
+}
+
+.buyBoton {
+  width: 50px;
+  z-index: 10;
 }
 
 #faltante {
@@ -399,6 +408,16 @@
   list-style: none;
   margin-left: auto;
   margin-right: auto;
+}
+
+.shopping-cart {
+  z-index: 15;
+  position: relative;
+  right: 2rem;
+}
+
+.item-price {
+  right: 16rem;
 }
 
 /*# sourceMappingURL=style.css.map */
