@@ -47,8 +47,6 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
       );
       elementQuantity.value++;
 
-      $(".toast").toast("show");
-
       updateShoppingCartTotal();
 
       return;
