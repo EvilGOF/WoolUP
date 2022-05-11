@@ -45,6 +45,7 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
       ].parentElement.parentElement.parentElement.querySelector(
         ".shoppingCartItemQuantity"
       );
+
       elementQuantity.value++;
 
       updateShoppingCartTotal();
