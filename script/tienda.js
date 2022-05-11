@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("El documento se ha cargado");
 });
 
-function saludoImporte(total) {
-  alert(`El importe final es de : $` + total + `\nDisfrute su compra!`);
+function saludo() {
+  alert(`Disfrute su compra!`);
 }
 
 const addToShoppingCartButtons = document.querySelectorAll(".addToCart");
@@ -143,6 +143,8 @@ function comprarButtonClicked() {
   shoppingCartItemsContainer.innerHTML = "";
 
   updateShoppingCartTotal();
+
+  saludo();
 }
 
 let articulosFaltantes = ["Alfombra de baño", "Medias", "Set de mesa de luz"];
