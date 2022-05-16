@@ -42,144 +42,78 @@
     <div class="content">
       <div class="gallery_container container">
         <h2 id="title-gallery"></h2>
-        <section class="shopping-cart">
-          <div class="container">
-            <h1 class="text-center">CARRITO</h1>
-            <hr />
-            <div class="row">
-              <div class="col-6">
-                <div class="shopping-cart-header">
-                  <h6>Producto</h6>
-                </div>
-              </div>
-              <div class="col-2">
-                <div class="shopping-cart-header">
-                  <h6 class="text-truncate">Precio</h6>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="shopping-cart-header">
-                  <h6>Cantidad</h6>
+
+        <div>
+          <h1>Carrito</h1>
+          <hr />
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Item</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Acción</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody id="items"></tbody>
+            <tfoot>
+              <tr id="footer">
+                <th scope="row" colspan="5">
+                  Carrito vacío - comience a comprar!
+                </th>
+              </tr>
+            </tfoot>
+          </table>
+
+          <div class="row" id="cards"></div>
+        </div>
+
+        <template id="template-footer">
+          <th scope="row" colspan="2">Total productos</th>
+          <td>10</td>
+          <td>
+            <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+              vaciar todo
+            </button>
+          </td>
+          <td class="font-weight-bold">$ <span id="total">5000</span></td>
+        </template>
+
+        <template id="template-carrito">
+          <tr>
+            <th scope="row">id</th>
+            <td></td>
+            <td></td>
+            <td>
+              <button class="btn btn-info btn-sm">+</button>
+              <button class="btn btn-danger btn-sm">-</button>
+            </td>
+            <td>$ <span>500</span></td>
+          </tr>
+        </template>
+
+        <div class="container">
+          <template id="template-card">
+            <div class="col-12 mb-2 col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <img
+                    src=""
+                    alt=""
+                    class="card-img-top"
+                    width="300px"
+                    height="300px"
+                  />
+                  <h5>Titulo</h5>
+                  <p>precio</p>
+                  <button class="btn btn-dark">Comprar</button>
                 </div>
               </div>
             </div>
+          </template>
+        </div>
 
-            <div class="shopping-cart-items shoppingCartItemsContainer"></div>
-
-            <div class="row">
-              <div class="col-12">
-                <div class="shopping-cart-total d-flex align-items-center">
-                  <p class="mb-0">Total</p>
-                  <p class="ml-4 mb-0 shoppingCartTotal">$0</p>
-                  <div
-                    class="toast ml-auto bg-info"
-                    role="alert"
-                    aria-live="assertive"
-                    aria-atomic="true"
-                    data-delay="2000"
-                  >
-                    <div class="toast-header">
-                      <span>✅</span>
-                      <strong class="mr-auto ml-1 text-secondary"
-                        >Elemento en el carrito</strong
-                      >
-                      <button
-                        type="button"
-                        class="ml-2 mb-1 close"
-                        data-dismiss="toast"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                  </div>
-                  <button
-                    class="btn btn-success ml-auto comprarButton"
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#comprarModal"
-                  >
-                    Comprar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <ul class="gallery row p-2 items">
-          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img
-              class="gallery-card__img item-image"
-              alt=""
-              src="../img/alfombra.jpg"
-            />
-            <p class="gallery-card__caption item-title">Alfombra</p>
-            <p class="gallery-card__caption item-price">$500</p>
-            <button id="btnAlfombra" class="buyBoton item-button addToCart">
-              Buy
-            </button>
-          </li>
-          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img
-              class="gallery-card__img item-image"
-              alt=""
-              src="../img/bufanda.jpg"
-            />
-            <p class="gallery-card__caption item-title">Bufanda</p>
-            <p class="gallery-card__caption item-price">$400</p>
-            <button id="btnBufanda" class="buyBoton item-button addToCart">
-              Buy
-            </button>
-          </li>
-          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img
-              class="gallery-card__img item-image"
-              alt=""
-              src="../img/guantes.jpg"
-            />
-            <p class="gallery-card__caption item-title">Guantes</p>
-            <p class="gallery-card__caption item-price">$200</p>
-            <button id="btnBGuantes" class="buyBoton item-button addToCart">
-              Buy
-            </button>
-          </li>
-          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img
-              class="gallery-card__img item-image"
-              alt=""
-              src="../img/gorro.jpg"
-            />
-            <p class="gallery-card__caption item-title">Gorro</p>
-            <p class="gallery-card__caption item-price">$500</p>
-            <button id="btnGorro" class="buyBoton item-button addToCart">
-              Buy
-            </button>
-          </li>
-          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img
-              class="gallery-card__img item-image"
-              alt=""
-              src="../img/manta.jpg"
-            />
-            <p class="gallery-card__caption item-title">Manta</p>
-            <p class="gallery-card__caption item-price">$1000</p>
-            <button id="btnManta" class="buyBoton item-button addToCart">
-              Buy
-            </button>
-          </li>
-          <li class="item gallery-card col-sm col-md-6 col-lg-4" tabindex="0">
-            <img
-              class="gallery-card__img item-image"
-              alt=""
-              src="../img/canasta.jpg"
-            />
-            <p class="gallery-card__caption item-title">Canasta</p>
-            <p class="gallery-card__caption item-price">$600</p>
-            <button id="btnCanasta" class="buyBoton item-button addToCart">
-              Buy
-            </button>
-          </li>
-        </ul>
         <ul id="faltante"></ul>
         <br />
       </div>

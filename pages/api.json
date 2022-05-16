@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nombreArticulo": "Alfombra",
+    "precioArticulo": 500,
+    "img": "../img/alfombra.jpg"
+  },
+  {
+    "id": 2,
+    "nombreArticulo": "Bufanda",
+    "precioArticulo": 400,
+    "img": "../img/bufanda.jpg"
+  },
+  {
+    "id": 3,
+    "nombreArticulo": "Guantes",
+    "precioArticulo": 200,
+    "img": "../img/guantes.jpg"
+  },
+  {
+    "id": 4,
+    "nombreArticulo": "Gorro",
+    "precioArticulo": 500,
+    "img": "../img/gorro.jpg"
+  },
+  {
+    "id": 5,
+    "nombreArticulo": "Manta",
+    "precioArticulo": 1000,
+    "img": "../img/manta.jpg"
+  },
+  {
+    "id": 6,
+    "nombreArticulo": "Canasta",
+    "precioArticulo": 600,
+    "img": "../img/canasta.jpg"
+  }
+]

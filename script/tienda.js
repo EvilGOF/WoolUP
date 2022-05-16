@@ -1,169 +1,184 @@
+const cards = document.getElementById("cards");
+
+const items = document.getElementById("items");
+
+const footer = document.getElementById("footer");
+
+const templateCard = document.getElementById("template-card").content;
+
+const templateFooter = document.getElementById("template-footer").content;
+
+const templateCarrito = document.getElementById("template-carrito").content;
+
+const fragment = document.createDocumentFragment();
+
+let carrito = {};
+
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("El documento se ha cargado");
+  fetchData();
+
+  if (localStorage.getItem("carrito")) {
+    carrito = JSON.parse(localStorage.getItem("carrito"));
+    pintarCarrito();
+  }
 });
 
-function saludo() {
-  alert(`Disfrute su compra!`);
-}
-
-const addToShoppingCartButtons = document.querySelectorAll(".addToCart");
-
-addToShoppingCartButtons.forEach((addToCartButton) => {
-  addToCartButton.addEventListener("click", addToCartClicked);
+items.addEventListener("click", (e) => {
+  btnAccion(e);
 });
 
-const comprarButton = document.querySelector(".comprarButton");
+cards.addEventListener("click", (e) => {
+  addCarrito(e);
+});
 
-comprarButton.addEventListener("click", comprarButtonClicked);
+const fetchData = async () => {
+  try {
+    const res = await fetch("api.json");
 
-const shoppingCartItemsContainer = document.querySelector(
-  ".shoppingCartItemsContainer"
-);
+    const data = await res.json();
 
-function addToCartClicked(event) {
-  const button = event.target;
+    pintarCards(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  const item = button.closest(".item");
+const pintarCards = (data) => {
+  data.forEach((producto) => {
+    templateCard.querySelector("h5").textContent = producto.nombreArticulo;
 
-  const itemTitle = item.querySelector(".item-title").textContent;
+    templateCard.querySelector("p").textContent = producto.precioArticulo;
 
-  const itemPrice = item.querySelector(".item-price").textContent;
+    templateCard.querySelector("img").setAttribute("src", producto.img);
 
-  const itemImage = item.querySelector(".item-image").src;
+    templateCard.querySelector(".btn-dark").dataset.id = producto.id;
 
-  addItemToShoppingCart(itemTitle, itemPrice, itemImage);
-}
+    const clone = templateCard.cloneNode(true);
 
-function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
-  const elementsTitle = shoppingCartItemsContainer.getElementsByClassName(
-    "shoppingCartItemTitle"
-  );
-  for (let i = 0; i < elementsTitle.length; i++) {
-    if (elementsTitle[i].innerText === itemTitle) {
-      let elementQuantity = elementsTitle[
-        i
-      ].parentElement.parentElement.parentElement.querySelector(
-        ".shoppingCartItemQuantity"
-      );
+    fragment.appendChild(clone);
+  });
+  cards.appendChild(fragment);
+};
 
-      elementQuantity.value++;
-
-      updateShoppingCartTotal();
-
-      return;
-    }
+const addCarrito = (e) => {
+  if (e.target.classList.contains("btn-dark")) {
+    setCarrito(e.target.parentElement);
   }
 
-  const shoppingCartRow = document.createElement("div");
+  e.stopPropagation();
+};
 
-  const shoppingCartContent = `
-  <div class="row shoppingCartItem">
-        <div class="col-6">
-            <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
-                <img src=${itemImage} width= 50px height= 50px class="shopping-cart-image">
-                <h6 class="shopping-cart-item-title shoppingCartItemTitle text-truncate ml-3 mb-0">${itemTitle}</h6>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="shopping-cart-price d-flex align-items-center h-100 border-bottom pb-2 pt-3">
-                <p class="item-price mb-0 shoppingCartItemPrice">${itemPrice}</p>
-            </div>
-        </div>
-        <div class="col-4">
-            <div
-                class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
-                <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
-                    value="1">
-                <button class="btn btn-danger buttonDelete" type="button">X</button>
-            </div>
-        </div>
-    </div>`;
-  shoppingCartRow.innerHTML = shoppingCartContent;
-  shoppingCartItemsContainer.append(shoppingCartRow);
+const setCarrito = (objeto) => {
+  const producto = {
+    id: objeto.querySelector(".btn-dark").dataset.id,
 
-  shoppingCartRow
-    .querySelector(".buttonDelete")
-    .addEventListener("click", removeShoppingCartItem);
+    nombre: objeto.querySelector("h5").textContent,
 
-  shoppingCartRow
-    .querySelector(".shoppingCartItemQuantity")
-    .addEventListener("change", quantityChanged);
+    precio: objeto.querySelector("p").textContent,
 
-  updateShoppingCartTotal();
-}
+    cantidad: 1,
+  };
 
-function updateShoppingCartTotal() {
-  let total = 0;
+  if (carrito.hasOwnProperty(producto.id)) {
+    producto.cantidad = carrito[producto.id].cantidad + 1;
+  }
 
-  const shoppingCartTotal = document.querySelector(".shoppingCartTotal");
+  carrito[producto.id] = { ...producto };
 
-  const shoppingCartItems = document.querySelectorAll(".shoppingCartItem");
+  pintarCarrito();
+};
 
-  shoppingCartItems.forEach((shoppingCartItem) => {
-    const shoppingCartItemPriceElement = shoppingCartItem.querySelector(
-      ".shoppingCartItemPrice"
-    );
+const pintarCarrito = () => {
+  Object.values(carrito).forEach((producto) => {
+    items.innerHTML = "";
 
-    const shoppingCartItemPrice = Number(
-      shoppingCartItemPriceElement.textContent.replace("$", "")
-    );
+    templateCarrito.querySelector("th").textContent = producto.id;
 
-    const shoppingCartItemQuantityElement = shoppingCartItem.querySelector(
-      ".shoppingCartItemQuantity"
-    );
+    templateCarrito.querySelectorAll("td")[0].textContent = producto.nombre;
 
-    const shoppingCartItemQuantity = Number(
-      shoppingCartItemQuantityElement.value
-    );
+    templateCarrito.querySelectorAll("td")[1].textContent = producto.cantidad;
 
-    total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
+    templateCarrito.querySelector(".btn-info").dataset.id = producto.id;
+
+    templateCarrito.querySelector(".btn-danger").dataset.id = producto.id;
+
+    templateCarrito.querySelector("span").textContent =
+      producto.cantidad * producto.precio;
+
+    const clone = templateCarrito.cloneNode(true);
+
+    fragment.appendChild(clone);
   });
 
-  shoppingCartTotal.innerHTML = `$${total.toFixed(2)}`;
-}
+  items.appendChild(fragment);
 
-function removeShoppingCartItem(event) {
-  const buttonClicked = event.target;
+  pintarFooter();
 
-  buttonClicked.closest(".shoppingCartItem").remove();
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+};
 
-  updateShoppingCartTotal();
-}
+const pintarFooter = () => {
+  footer.innerHTML = "";
 
-function quantityChanged(event) {
-  const input = event.target;
+  if (Object.keys(carrito).length === 0) {
+    footer.innerHTML = ` <th scope="row" colspan="5">
+    Carrito vacío - comience a comprar!
+  </th>`;
 
-  input.value <= 0 ? (input.value = 1) : null;
+    return;
+  }
 
-  updateShoppingCartTotal();
-}
+  const nCantidad = Object.values(carrito).reduce(
+    (acc, { cantidad }) => acc + cantidad,
+    0
+  );
 
-function comprarButtonClicked() {
-  shoppingCartItemsContainer.innerHTML = "";
+  const nPrecio = Object.values(carrito).reduce(
+    (acc, { cantidad, precio }) => acc + cantidad * precio,
+    0
+  );
 
-  updateShoppingCartTotal();
+  templateFooter.querySelectorAll("td")[0].textContent = nCantidad;
 
-  saludo();
-}
+  templateFooter.querySelector("#total").textContent = nPrecio;
 
-let articulosFaltantes = ["Alfombra de baño", "Medias", "Set de mesa de luz"];
+  const clone = templateFooter.cloneNode(true);
 
-let faltante = document.getElementById("faltante");
+  fragment.appendChild(clone);
 
-let faltanteTitle = document.createElement("h4");
+  footer.appendChild(fragment);
 
-faltanteTitle.innerText = `Articulos Faltantes`;
+  const vaciar = document.getElementById("vaciar-carrito");
 
-faltanteTitle.className = `faltante-title`;
+  vaciar.addEventListener(`click`, () => {
+    carrito = {};
 
-faltante.append(faltanteTitle);
+    pintarCarrito();
+  });
+};
 
-for (const articuloFaltante of articulosFaltantes) {
-  let li = document.createElement("li");
+const btnAccion = (e) => {
+  if (e.target.classList.contains("btn-info")) {
+    const producto = carrito[e.target.dataset.id];
 
-  li.innerHTML = articuloFaltante;
+    producto.cantidad++;
 
-  li.className = `faltante-item`;
+    carrito[e.target.dataset.id] = { ...producto };
 
-  faltante.append(li);
-}
+    pintarCarrito();
+  }
+
+  if (e.target.classList.contains("btn-danger")) {
+    const producto = carrito[e.target.dataset.id];
+
+    producto.cantidad--;
+
+    if (producto.cantidad === 0) {
+      delete carrito[e.target.dataset.id];
+    }
+
+    pintarCarrito();
+  }
+
+  e.stopPropagation();
+};
