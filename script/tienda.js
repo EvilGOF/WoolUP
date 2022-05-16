@@ -89,9 +89,9 @@ const setCarrito = (objeto) => {
 };
 
 const pintarCarrito = () => {
-  Object.values(carrito).forEach((producto) => {
-    items.innerHTML = "";
+  items.innerHTML = "";
 
+  Object.values(carrito).forEach((producto) => {
     templateCarrito.querySelector("th").textContent = producto.id;
 
     templateCarrito.querySelectorAll("td")[0].textContent = producto.nombre;
