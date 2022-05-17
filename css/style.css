@@ -299,7 +299,7 @@
 @media (min-width: 998px) {
   .gallery_container {
     position: absolute;
-    left: 52%;
+    left: 49%;
     margin-top: 8rem;
     transform: translate(-50%, -50%);
   }
