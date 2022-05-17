@@ -93,28 +93,20 @@
           </tr>
         </template>
 
-        <div class="container">
+        <div class="container gallery_container">
           <template id="template-card">
             <div class="col-12 mb-2 col-md-4">
               <div class="card">
-                <div class="card-body">
-                  <img
-                    src=""
-                    alt=""
-                    class="card-img-top"
-                    width="300px"
-                    height="300px"
-                  />
-                  <h5>Titulo</h5>
-                  <p>precio</p>
-                  <button class="btn btn-dark">Comprar</button>
+                <div class="card-body gallery-card">
+                  <img src="" alt="" class="card-img-top gallery-card__img" />
+                  <h5 class="gallery-card__caption">Titulo</h5>
+                  <p class="gallery-card__caption item-price">precio</p>
+                  <button class="btn btn-dark buyBoton">Comprar</button>
                 </div>
               </div>
             </div>
           </template>
         </div>
-
-        <ul id="faltante"></ul>
         <br />
       </div>
     </div>
