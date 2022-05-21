@@ -12,6 +12,40 @@ const templateCarrito = document.getElementById("template-carrito").content;
 
 const fragment = document.createDocumentFragment();
 
+const form = document.querySelector("#formulario");
+
+const enviarFormulario = (event) => {
+  event.preventDefault();
+
+  const { name, email } = event.target;
+
+  if (name.value.length === 0 || email.value.length === 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Ingrese su nombre y mail!",
+    });
+  } else {
+    Swal.fire({
+      title: `Bienvenido ${name.value}! Enviaremos su factura a ${email.value}`,
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+    });
+
+    form.innerHTML = "";
+
+    const title = document.getElementById("title-gallery");
+
+    title.innerHTML = `Bienvenido ${name.value} !`;
+  }
+};
+
+form.addEventListener("submit", enviarFormulario);
+
 let carrito = {};
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -155,6 +189,63 @@ const pintarFooter = () => {
     carrito = {};
 
     pintarCarrito();
+  });
+
+  const comprar = document.getElementById("comprar-carrito");
+
+  comprar.addEventListener(`click`, () => {
+    const title = document.getElementById("title-gallery");
+
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `Muchas gracias por su compra!`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+    carrito = {};
+
+    pintarCarrito();
+
+    const form = document.getElementById("formulario");
+
+    const eliminarUser = (event) => {
+      event.preventDefault();
+
+      event.target.name.value = "";
+
+      event.target.email.value = "";
+    };
+
+    form.addEventListener("submit", eliminarUser);
+
+    form.innerHTML = `<form class="form row" id="formulario">
+    <input
+      value=""
+      type="text"
+      name="name"
+      id="nombre"
+      class="form__input mb-2 col-12 col-md-4"
+      placeholder="Nombre"
+    />
+    <input
+      value=""
+      type="text"
+      name="email"
+      id="email"
+      class="form__input mb-2 col-12 col-md-4"
+      placeholder="Email"
+    />
+    <button
+      class="col-12 col-md-2 mb-1 btn btn-dark submit-user"
+      type="submit"
+    >
+      Ingresar
+    </button>
+  </form>`;
+
+    title.innerHTML = "";
   });
 };
 

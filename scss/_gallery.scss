@@ -109,3 +109,55 @@
 .gallery-card__caption {
   font-size: 2rem;
 }
+
+#comprar-carrito {
+  position: relative;
+  left: 5rem;
+}
+
+.total-box {
+  position: relative;
+  left: 2rem;
+}
+
+.form {
+  height: 10vh;
+  width: 100%;
+  color: black;
+  background-color: #fff;
+}
+
+.form__label {
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+}
+
+.form__input {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  width: 70%;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: #333 1px solid;
+}
+
+#cart {
+  margin-top: 5rem;
+}
+
+.submit-user {
+  width: 100px;
+  height: 50px;
+  position: relative;
+  top: 1rem;
+}
+
+#title-gallery {
+  font-size: 2.5rem;
+}
