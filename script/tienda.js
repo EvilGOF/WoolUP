@@ -196,8 +196,6 @@ const pintarFooter = () => {
   comprar.addEventListener(`click`, () => {
     const title = document.getElementById("title-gallery");
 
-    console.log(title.innerHTML);
-
     if (title.innerHTML.length === 0) {
       Swal.fire({
         icon: "error",
