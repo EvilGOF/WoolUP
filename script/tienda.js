@@ -208,18 +208,6 @@ const pintarFooter = () => {
 
     pintarCarrito();
 
-    const form = document.getElementById("formulario");
-
-    const eliminarUser = (event) => {
-      event.preventDefault();
-
-      event.target.name.value = "";
-
-      event.target.email.value = "";
-    };
-
-    form.addEventListener("submit", eliminarUser);
-
     form.innerHTML = `<form class="form row" id="formulario">
     <input
       value=""
@@ -265,9 +253,7 @@ const btnAccion = (e) => {
 
     producto.cantidad--;
 
-    if (producto.cantidad === 0) {
-      delete carrito[e.target.dataset.id];
-    }
+    producto.cantidad === 0 && delete carrito[e.target.dataset.id];
 
     pintarCarrito();
   }
