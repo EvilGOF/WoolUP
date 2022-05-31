@@ -36,6 +36,10 @@ const enviarFormulario = (event) => {
       },
     });
 
+    localStorage.setItem("name", name.value);
+
+    localStorage.setItem("email", email.value);
+
     form.innerHTML = "";
 
     const title = document.getElementById("title-gallery");
@@ -43,6 +47,16 @@ const enviarFormulario = (event) => {
     title.innerHTML = `Bienvenido ${name.value} !`;
   }
 };
+
+if (localStorage.getItem("name")) {
+  const name = localStorage.getItem("name");
+
+  form.innerHTML = "";
+
+  const title = document.getElementById("title-gallery");
+
+  title.innerHTML = `Bienvenido ${name} !`;
+}
 
 form.addEventListener("submit", enviarFormulario);
 
@@ -196,13 +210,7 @@ const pintarFooter = () => {
   comprar.addEventListener(`click`, () => {
     const title = document.getElementById("title-gallery");
 
-    if (title.innerHTML.length === 0) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Debes ingresar tu nombre y mail!",
-      });
-    } else {
+    if (localStorage.getItem("name")) {
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -238,9 +246,19 @@ const pintarFooter = () => {
       >
         Ingresar
       </button>
-    </form>`;
+       </form>`;
 
       title.innerHTML = "";
+
+      localStorage.removeItem("name");
+
+      localStorage.removeItem("email");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes ingresar tu nombre y mail!",
+      });
     }
   });
 };
