@@ -37,6 +37,12 @@ const enviarFormulario = (event) => {
     deLog.type = "button";
 
     deLog.innerText = "Salir";
+
+    deLog.setAttribute("id", "deLog-btn");
+
+    deLog.classList.add("btn", "btn-dark");
+
+    document.querySelector("#title").appendChild(deLog);
   }
 };
 
@@ -48,6 +54,18 @@ if (localStorage.getItem("name")) {
   const title = document.getElementById("title-gallery");
 
   title.innerHTML = `Bienvenido ${name} !`;
+
+  const deLog = document.createElement("button");
+
+  deLog.type = "button";
+
+  deLog.innerText = "Salir";
+
+  deLog.setAttribute("id", "deLog-btn");
+
+  deLog.classList.add("btn", "btn-dark");
+
+  document.querySelector("#title").appendChild(deLog);
 }
 
 form.addEventListener("submit", enviarFormulario);

@@ -200,6 +200,12 @@ const pintarFooter = () => {
       </button>
        </form>`;
 
+      const deLogContainer = document.getElementById("deLog-btn");
+
+      const deLog = document.getElementById("deLog-btn");
+
+      deLogContainer.parentNode.removeChild(deLog);
+
       title.innerHTML = "";
 
       localStorage.removeItem("name");
