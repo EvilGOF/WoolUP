@@ -43,6 +43,8 @@ const fetchData = async () => {
   }
 };
 
+//Carga dinámica de productos
+
 const pintarCards = (data) => {
   data.forEach((producto) => {
     templateCard.querySelector("h5").textContent = producto.nombreArticulo;
@@ -68,6 +70,8 @@ const addCarrito = (e) => {
 
   e.stopPropagation();
 };
+
+//Contenido del carrito
 
 const setCarrito = (objeto) => {
   const producto = {
@@ -164,9 +168,9 @@ const pintarFooter = () => {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `Muchas gracias por su compra!`,
+        title: `Muchas gracias por su compra! Pronto recibira su pedido.`,
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
       });
 
       carrito = {};
@@ -176,7 +180,7 @@ const pintarFooter = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Debes ingresar tu nombre y mail!",
+        text: "Debes ingresar tu nombre y mail! De lo contrario, donde enviamos su factura?",
       });
     }
   });

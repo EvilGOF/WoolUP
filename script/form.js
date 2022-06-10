@@ -84,7 +84,7 @@ const enviarFormulario = (event) => {
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: "Ingrese su nombre y mail!",
+      text: "Ingrese su nombre y mail! De lo contrario, donde enviamos su factura?",
     });
   } else {
     Swal.fire({
