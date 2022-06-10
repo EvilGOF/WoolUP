@@ -174,7 +174,7 @@ const pintarFooter = () => {
         icon: "success",
         title: `Muchas gracias por su compra! Nos pondremos en contacto para coordinar la entrega.`,
         showConfirmButton: false,
-        timer: 2000,
+        timer: 2500,
       });
 
       carrito = {};
