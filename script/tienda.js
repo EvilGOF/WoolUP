@@ -1,3 +1,5 @@
+//Aclaración: no hay métodos, no me parecio necesario su implementación.
+
 const cards = document.getElementById("cards");
 
 const items = document.getElementById("items");
@@ -161,6 +163,8 @@ const pintarFooter = () => {
     pintarCarrito();
   });
 
+  //Boton de compra, solo se puede comprar una vez identificado.
+
   const comprar = document.getElementById("comprar-carrito");
 
   comprar.addEventListener(`click`, () => {
@@ -185,6 +189,8 @@ const pintarFooter = () => {
     }
   });
 };
+
+//Botones para agregar o quitar items del carrito
 
 const btnAccion = (e) => {
   if (e.target.classList.contains("btn-info")) {

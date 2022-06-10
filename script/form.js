@@ -1,3 +1,7 @@
+//Aclaración: no hay métodos, no me parecio necesario su implementación.
+
+//Identificación de comprador
+
 const form = document.querySelector("#formulario");
 
 const pintarForm = () => {
@@ -27,6 +31,8 @@ const pintarForm = () => {
    </form>`;
 };
 
+//Mensaje de bienvenida dinámico.
+
 const createTitle = () => {
   const name = localStorage.getItem("name");
 
@@ -52,6 +58,8 @@ const createTitle = () => {
 
   document.querySelector("#title").appendChild(deLog);
 
+  //Boton de deslogeo, lógicamente solo aparece una vez identificado.
+
   const eliminarInformacion = (event) => {
     event.preventDefault();
 
@@ -74,6 +82,8 @@ const createTitle = () => {
 
   deLog.addEventListener("click", eliminarInformacion);
 };
+
+//Boton submit para identificarse
 
 const enviarFormulario = (event) => {
   event.preventDefault();
